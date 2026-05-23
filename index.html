@@ -907,7 +907,14 @@ var EXP_DAYS = [
   { key:'d5', label:'Day 5 — Mon Jun 15' },
   { key:'d6', label:'Day 6 — Tue Jun 16' }
 ];
-var expData = { d1:[], d2:[], d3:[], d4:[], d5:[], d6:[] };
+var STORAGE_KEY = 'banff2026_expenses';
+var expData = (function() {
+  try { var s = localStorage.getItem(STORAGE_KEY); if (s) return JSON.parse(s); } catch(e) {}
+  return { d1:[], d2:[], d3:[], d4:[], d5:[], d6:[] };
+})();
+function saveExpenses() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expData)); } catch(e) {}
+}
 
 function buildExpenses() {
   var container = document.getElementById('exp-container');
@@ -942,11 +949,13 @@ function buildExpenses() {
 
 function addRow(key) {
   expData[key].push({ item:'', amt:'', who:'' });
+  saveExpenses();
   renderRows(key);
 }
 
 function removeRow(key, idx) {
   expData[key].splice(idx, 1);
+  saveExpenses();
   renderRows(key);
 }
 
@@ -959,13 +968,13 @@ function renderRows(key) {
     div.className = 'exp-row';
 
     var i1 = document.createElement('input'); i1.className='inp-item'; i1.type='text'; i1.placeholder='Item'; i1.value=row.item;
-    i1.addEventListener('input', function() { expData[key][idx].item = this.value; });
+    i1.addEventListener('input', function() { expData[key][idx].item = this.value; saveExpenses(); });
 
     var i2 = document.createElement('input'); i2.className='inp-amt'; i2.type='number'; i2.placeholder='$'; i2.value=row.amt; i2.inputMode='decimal';
-    i2.addEventListener('input', function() { expData[key][idx].amt = this.value; recalc(key); });
+    i2.addEventListener('input', function() { expData[key][idx].amt = this.value; saveExpenses(); recalc(key); });
 
     var i3 = document.createElement('input'); i3.className='inp-who'; i3.type='text'; i3.placeholder='Paid by'; i3.value=row.who;
-    i3.addEventListener('input', function() { expData[key][idx].who = this.value; });
+    i3.addEventListener('input', function() { expData[key][idx].who = this.value; saveExpenses(); });
 
     var del = document.createElement('button'); del.className='exp-del'; del.textContent='×'; del.type='button';
     del.addEventListener('click', function() { removeRow(key, idx); });
