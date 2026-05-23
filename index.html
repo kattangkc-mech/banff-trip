@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Banff 6D5N · Jun 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F3ED;
+  --cream2: #EFE9DF;
+  --bark: #8B6F5E;
+  --pine: #4A6741;
+  --pine-light: #7A9B72;
+  --pine-pale: #DCE8D8;
+  --sky: #5B7FA6;
+  --sky-light: #A3BDD4;
+  --sky-pale: #D8E6F0;
+  --stone: #7A7268;
+  --stone-light: #B5AFA7;
+  --stone-pale: #E8E4DF;
+  --amber: #B07840;
+  --amber-light: #D4A96A;
+  --amber-pale: #F2E4CC;
+  --rust: #9B5A45;
+  --rust-pale: #F0DDD7;
+  --ink: #2C2620;
+  --ink2: #4A413A;
+  --white: #FDFAF7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* HEADER */
+.app-header {
+  background: var(--pine);
+  padding: 16px 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+.header-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); line-height: 1.1; }
+.header-sub { font-size: 11px; color: rgba(253,250,247,0.65); margin-top: 3px; font-weight: 300; }
+.header-badges { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+.hbadge { font-size: 10px; background: rgba(255,255,255,0.15); color: rgba(253,250,247,0.85); padding: 3px 8px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); white-space: nowrap; }
+
+/* JUMP BAR */
+.jump-bar {
+  background: var(--amber-pale); border: 1px solid var(--amber-light);
+  border-radius: 8px; padding: 8px 12px; margin: 10px 16px 0;
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.jump-bar-text { font-size: 13px; color: var(--amber); font-weight: 500; flex: 1; }
+.jump-bar-sub { font-size: 11px; color: var(--amber-light); }
+
+/* TABS */
+.tab-bar {
+  display: flex; overflow-x: auto; background: var(--pine);
+  padding: 0 8px; margin-top: 10px; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0; padding: 10px 14px 8px;
+  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 400;
+  color: rgba(253,250,247,0.55); cursor: pointer;
+  border: none; border-bottom: 2px solid transparent;
+  background: none; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 44px; /* iOS tap target */
+}
+.tab-btn.active { color: var(--white); border-bottom-color: var(--amber-light); font-weight: 500; }
+.tab-btn .tdate { font-size: 10px; display: block; opacity: 0.7; }
+
+/* CONTENT */
+.content { padding: 14px 16px 100px; max-width: 680px; margin: 0 auto; }
+.day-panel { display: none; }
+.day-panel.active { display: block; }
+
+/* DAY HEADER */
+.day-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; gap: 8px; }
+.day-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--pine); }
+.day-subtitle { font-size: 11px; color: var(--stone); margin-top: 2px; }
+.stay-chip { font-size: 11px; background: var(--rust-pale); color: var(--rust); padding: 3px 9px; border-radius: 12px; border: 1px solid #D4B0A8; white-space: nowrap; flex-shrink: 0; }
+
+/* PARK BANNER */
+.park-banner { background: var(--amber-pale); border: 1px solid var(--amber-light); border-radius: 8px; padding: 9px 13px; margin-bottom: 14px; font-size: 12px; color: var(--amber); display: flex; gap: 8px; align-items: flex-start; }
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: flex; gap: 12px; padding-bottom: 16px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-left { display: flex; flex-direction: column; align-items: center; min-width: 46px; }
+.tl-time { font-size: 11px; font-weight: 500; color: var(--stone); white-space: nowrap; text-align: center; line-height: 1.2; padding-top: 3px; }
+.tl-dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; border: 2px solid var(--cream); box-shadow: 0 0 0 1.5px currentColor; }
+.dot-transport { color: var(--sky); background: var(--sky); }
+.dot-food { color: var(--amber); background: var(--amber); }
+.dot-stay { color: var(--rust); background: var(--rust); }
+.dot-view { color: var(--pine); background: var(--pine); }
+.dot-activity { color: var(--bark); background: var(--bark); }
+.dot-drive { color: var(--stone-light); background: var(--stone-light); }
+.tl-line { width: 1px; flex: 1; background: var(--stone-pale); margin-top: 3px; }
+
+/* CARDS */
+.tl-card { flex: 1; background: var(--white); border: 1px solid var(--stone-pale); border-radius: 10px; padding: 11px 13px; min-width: 0; }
+.tl-card.card-drive { background: var(--cream); }
+.tl-card.card-stay { border-color: #D4B0A8; }
+.tl-card.card-view { border-color: #A8C0A4; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.card-name { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.card-cn { font-size: 12px; color: var(--stone); margin-top: 1px; }
+.card-type { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 10px; flex-shrink: 0; white-space: nowrap; }
+.type-transport { background: var(--sky-pale); color: var(--sky); }
+.type-food { background: var(--amber-pale); color: var(--amber); }
+.type-stay { background: var(--rust-pale); color: var(--rust); }
+.type-view { background: var(--pine-pale); color: var(--pine); }
+.type-activity { background: var(--cream2); color: var(--bark); }
+.card-addr { font-size: 11px; color: var(--stone); margin-top: 5px; }
+.card-note { font-size: 11px; color: var(--sky); background: var(--sky-pale); border-radius: 6px; padding: 5px 9px; margin-top: 7px; line-height: 1.5; }
+.card-note.note-warn { color: var(--amber); background: var(--amber-pale); }
+.cost-tag { display: inline-block; font-size: 10px; color: var(--pine); background: var(--pine-pale); padding: 2px 7px; border-radius: 10px; margin-top: 6px; }
+.card-photo { width: 100%; height: 120px; object-fit: cover; border-radius: 7px; margin-top: 9px; background: var(--stone-pale); display: block; }
+
+/* DIRECTIONS */
+.dir-toggle { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; color: var(--stone); cursor: pointer; background: none; border: none; padding: 4px 0; font-family: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.dir-arrow { display: inline-block; transition: transform 0.2s; font-style: normal; }
+.dir-toggle.open .dir-arrow { transform: rotate(180deg); }
+.dir-body { display: none; margin-top: 7px; border-top: 1px solid var(--stone-pale); padding-top: 7px; }
+.dir-body.open { display: block; }
+.dir-summary { font-size: 11px; color: var(--bark); font-weight: 500; margin-bottom: 5px; }
+.dir-steps { font-size: 10.5px; color: var(--stone); line-height: 1.6; }
+.dir-steps ol { padding-left: 14px; }
+.dir-steps li { padding: 1px 0; }
+.map-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 11px; font-weight: 500; color: var(--sky); background: var(--sky-pale); padding: 5px 10px; border-radius: 8px; text-decoration: none; border: 1px solid var(--sky-light); touch-action: manipulation; }
+
+/* NOW BADGE */
+.tl-item.is-now .tl-card { border-color: var(--amber-light); background: #FFFBF4; box-shadow: 0 0 0 2px var(--amber-pale); }
+.now-badge { display: inline-block; font-size: 10px; background: var(--amber); color: white; padding: 1px 6px; border-radius: 8px; margin-left: 6px; vertical-align: middle; }
+
+/* SEC LABEL */
+.sec-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--stone-light); margin-bottom: 10px; margin-top: 4px; }
+
+/* EXPENSE TAB */
+.exp-panel { background: var(--white); border: 1px solid var(--stone-pale); border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.exp-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--pine); margin-bottom: 4px; }
+.exp-subtitle { font-size: 12px; color: var(--stone); margin-bottom: 16px; }
+.exp-day-label { font-size: 11px; font-weight: 500; color: var(--stone); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 8px; }
+.exp-row { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
+.exp-row input { font-family: 'Jost', sans-serif; font-size: 13px; padding: 8px 10px; border: 1px solid var(--stone-pale); border-radius: 8px; background: var(--cream); color: var(--ink); outline: none; min-height: 40px; }
+.exp-row input:focus { border-color: var(--stone-light); }
+.inp-item { flex: 2; min-width: 0; }
+.inp-amt { width: 80px; flex-shrink: 0; }
+.inp-who { flex: 1.5; min-width: 0; }
+.exp-del { background: none; border: none; color: var(--stone-light); cursor: pointer; font-size: 20px; padding: 0 4px; flex-shrink: 0; line-height: 1; touch-action: manipulation; min-width: 32px; min-height: 40px; }
+.exp-del:active { color: var(--rust); }
+.exp-add-btn { width: 100%; padding: 10px; font-size: 13px; border-radius: 8px; border: 1.5px dashed var(--stone-light); background: none; cursor: pointer; color: var(--stone); font-family: 'Jost', sans-serif; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.exp-add-btn:active { background: var(--cream2); }
+.exp-total-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--stone-pale); font-size: 13px; font-weight: 500; color: var(--ink); }
+.exp-grand { background: var(--pine-pale); border: 1px solid #A8C0A4; border-radius: 10px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+.exp-grand-label { font-size: 14px; font-weight: 500; color: var(--pine); }
+.exp-grand-amt { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--pine); }
+
+/* PHOTO SECTION (per day) */
+.photo-section { margin-top: 24px; border-top: 1px solid var(--stone-pale); padding-top: 16px; }
+.photo-section-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--pine); margin-bottom: 4px; }
+.photo-section-sub { font-size: 11px; color: var(--stone); margin-bottom: 10px; }
+.mem-upload-area { border: 1.5px dashed var(--stone-light); border-radius: 10px; padding: 16px; text-align: center; cursor: pointer; background: var(--cream); margin-bottom: 10px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.mem-upload-area:active { background: var(--cream2); }
+.mem-upload-icon { font-size: 20px; }
+.mem-upload-text { font-size: 12px; color: var(--stone); }
+.mem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; margin-top: 4px; }
+.mem-thumb { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background: var(--stone-pale); }
+.mem-thumb img, .mem-thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mem-thumb-del { position: absolute; top: 4px; right: 4px; background: rgba(44,38,32,0.65); border: none; border-radius: 50%; color: white; width: 22px; height: 22px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; touch-action: manipulation; }
+.mem-caption { width: 100%; font-family: 'Jost', sans-serif; font-size: 12px; padding: 7px 10px; border: 1px solid var(--stone-pale); border-radius: 7px; background: var(--cream); color: var(--ink); margin-top: 8px; outline: none; display: block; }
+.mem-caption:focus { border-color: var(--stone-light); }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="header-top">
+    <div>
+      <div class="header-title">Banff 6D5N 🏔</div>
+      <div class="header-sub">Jun 11–16, 2026 · Cheuk Kwan & Kat · 6 travellers</div>
+    </div>
+    <div class="header-badges">
+      <span class="hbadge">🚗 Enterprise Minivan</span>
+      <span class="hbadge">🌲 Banff · Jasper</span>
+    </div>
+  </div>
+  <div class="jump-bar" id="jumpBar">
+    <span style="font-size:16px">⏰</span>
+    <span class="jump-bar-text">Jump to current activity</span>
+    <span class="jump-bar-sub">tap ↓</span>
+  </div>
+  <div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" data-tab="d1"><span class="tdate">Jun 11</span>Day 1</button>
+    <button class="tab-btn" data-tab="d2"><span class="tdate">Jun 12</span>Day 2</button>
+    <button class="tab-btn" data-tab="d3"><span class="tdate">Jun 13</span>Day 3</button>
+    <button class="tab-btn" data-tab="d4"><span class="tdate">Jun 14</span>Day 4</button>
+    <button class="tab-btn" data-tab="d5"><span class="tdate">Jun 15</span>Day 5</button>
+    <button class="tab-btn" data-tab="d6"><span class="tdate">Jun 16</span>Day 6</button>
+    <button class="tab-btn" data-tab="expenses"><span class="tdate">💰</span>Expenses</button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ===== DAY 1 ===== -->
+<div id="d1" class="day-panel active">
+  <div class="day-header">
+    <div><div class="day-title">Day 1 — Thu, Jun 11</div><div class="day-subtitle">Richmond → Calgary → Canmore</div></div>
+    <div class="stay-chip">🏠 Airbnb Canmore</div>
+  </div>
+  <div class="sec-label">Schedule</div>
+  <div class="timeline">
+
+    <div class="tl-item" data-time="07:00">
+      <div class="tl-left"><span class="tl-time">7:00<br>AM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發 · Drive to YVR</div><div class="card-cn">溫哥華國際機場</div></div></div>
+        <div class="card-addr">📍 From home → YVR · 2.4 mi · ~7 mins</div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Driving directions</button>
+        <div class="dir-body"><div class="dir-summary">📍 2.4 mi · ~7 mins</div><div class="dir-steps"><ol>
+          <li>Head west on Odlin Rd toward Dubbert St — 0.2 mi</li>
+          <li>Turn right onto Garden City Rd N — 0.6 mi</li>
+          <li>Continue onto Great Canadian Way — 433 ft</li>
+          <li>Turn left onto Bridgeport Rd — 0.6 mi</li>
+          <li>Take ramp to Airport Main Terminal — 0.6 mi</li>
+          <li>Merge onto Grant McConachie Way E — 0.3 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=9388+Odlin+Rd+Richmond+BC&destination=Vancouver+International+Airport" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="09:25">
+      <div class="tl-left"><span class="tl-time">9:25<br>AM</span><div class="tl-dot dot-transport"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">✈️ WS 108 · YVR → YYC</div><div class="card-cn">溫哥華 → 卡爾加里</div></div><span class="card-type type-transport">Flight</span></div>
+        <div class="card-addr">🛬 Arrives 11:55 AM MDT · 1h 30m · Nonstop · Boeing 737-800</div>
+        <span class="cost-tag">CAD $1,617.96</span>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="13:00">
+      <div class="tl-left"><span class="tl-time">1:00<br>PM</span><div class="tl-dot dot-transport"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">租車 Enterprise</div><div class="card-cn">7座 Chrysler Pacifica</div></div><span class="card-type type-transport">Car</span></div>
+        <div class="card-addr">📍 Calgary, AB T2E 6W5</div>
+        <span class="cost-tag">CAD $734.11</span>
+        <br><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Enterprise+Rent+A+Car+Calgary+Airport" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="14:00">
+      <div class="tl-left"><span class="tl-time">2:00<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">T&T 買野</div><div class="card-cn">大統華超市購物</div></div><span class="card-type type-food">Shopping</span></div>
+        <div class="card-addr">📍 9650 Harvest Hills Blvd N #1000, Calgary</div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~3.7 mi, 10 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 3.7 mi · ~10 mins from airport</div><div class="dir-steps"><ol>
+          <li>Head west on Airport Rd NE — 0.1 mi</li>
+          <li>Slight right onto Airport Ave NE — 0.2 mi</li>
+          <li>Turn right to stay on Airport Ave NE — 0.4 mi</li>
+          <li>Airport Ave NE becomes 19 St NE — 0.3 mi</li>
+          <li>Take ramp onto 96 Ave NE / Airport Trail NE W — 2.6 mi</li>
+          <li>Turn left onto Aurora Park Dr, then right to destination — 0.1 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=9650+Harvest+Hills+Blvd+N+Calgary" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="15:00">
+      <div class="tl-left"><span class="tl-time">3:00<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發到 Canmore</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~67.7 mi, 1h 12m)</button>
+        <div class="dir-body"><div class="dir-summary">📍 67.7 mi · ~1h 12m</div><div class="dir-steps"><ol>
+          <li>Head to S Rd NE from T&T — 0.2 mi</li>
+          <li>Turn left onto Harvest Hills Blvd N — 0.3 mi</li>
+          <li>Slight right onto Beddington Trail W ramp — 0.3 mi</li>
+          <li>Merge onto Beddington Trail NW — 2.3 mi</li>
+          <li>Slight right onto Stoney Trail NW / AB-201 W — 8.4 mi</li>
+          <li>Take exit 36 for Trans Canada Hwy 1 / 16 Avenue N</li>
+          <li>Merge onto Trans-Canada Hwy / AB-1 W toward Banff — 53.6 mi</li>
+          <li>Take exit 91 toward Canmore — 0.4 mi</li>
+          <li>Merge onto Bow Valley Trail / AB-1A W — 1.0 mi</li>
+          <li>Turn left onto Railway Ave — destination on right — 0.5 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=9650+Harvest+Hills+Blvd+N+Calgary&destination=1160+Railway+Avenue+Canmore+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="16:15">
+      <div class="tl-left"><span class="tl-time">4:15<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Rocky Mountain Bagel Co.</div><div class="card-cn">買明天早餐bagel 🥯</div></div><span class="card-type type-food">Food</span></div>
+        <div class="card-addr">📍 Canmore Canoe, 8 St, Canmore</div>
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Rocky+Mountain+Bagel+Company+Canmore" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="16:30">
+      <div class="tl-left"><span class="tl-time">4:30<br>PM</span><div class="tl-dot dot-stay"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-stay">
+        <div class="card-top"><div><div class="card-name">Airbnb Canmore — Check-in</div><div class="card-cn">確認碼 HMQSNCCN2N</div></div><span class="card-type type-stay">Stay</span></div>
+        <div class="card-addr">📍 1160 Railway Avenue, Canmore, AB T1W 1P4</div>
+        <div class="card-note">🔐 Keypad entry — contact host for check-in details.</div>
+        <span class="cost-tag">CAD $1,549.98 total stay</span>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="17:40">
+      <div class="tl-left"><span class="tl-time">5:40<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發食晚餐</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions to Bridgette Bar (~1.0 mi, 4 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 1.0 mi · ~4 mins</div><div class="dir-steps"><ol>
+          <li>Head southeast on Railway Ave toward 10 St — 0.5 mi</li>
+          <li>Turn right onto Bow Valley Trail / AB-1A E — 0.3 mi</li>
+          <li>At roundabout, take 1st exit onto Spring Creek Dr — 0.2 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=1160+Railway+Avenue+Canmore&destination=1030+Spring+Creek+Dr+Canmore" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="18:00">
+      <div class="tl-left"><span class="tl-time">6:00<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Bridgette Bar Canmore</div><div class="card-cn">西餐晚飯</div></div><span class="card-type type-food">Dinner</span></div>
+        <div class="card-addr">📍 1030 Spring Creek Dr, Canmore</div>
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=1030+Spring+Creek+Dr+Canmore+AB" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="19:30">
+      <div class="tl-left"><span class="tl-time">7:30<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出車 散步</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions to Three Sisters (~0.9 mi, 2 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 0.9 mi · ~2 mins</div><div class="dir-steps"><ol>
+          <li>Head northeast on Spring Creek Dr — 0.2 mi</li>
+          <li>At roundabout, take 1st exit onto Bow Valley Trail / AB-1A — 0.7 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Three+Sisters+Viewpoint+Canmore+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="20:00">
+      <div class="tl-left"><span class="tl-time">8:00<br>PM</span><div class="tl-dot dot-view"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Three Sisters Viewpoint</div><div class="card-cn">三姐妹山觀景台</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Canmore, AB · Ends 8:30 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Three_sisters_Canmore.jpg/1280px-Three_sisters_Canmore.jpg" alt="Three Sisters Canmore" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <div class="photo-section-title">📷 Day 1 Photos</div>
+    <div class="photo-section-sub">Richmond → Canmore</div>
+    <div class="mem-upload-area" id="upload-area-m1"><div class="mem-upload-icon">📁</div><div class="mem-upload-text">Tap to add photos &amp; videos</div></div>
+    <input type="file" id="mem-input-m1" multiple accept="image/*,video/*" style="display:none">
+    <div class="mem-grid" id="mem-grid-m1"></div>
+    <input type="text" class="mem-caption" id="mem-caption-m1" placeholder="Caption for this day…">
+  </div>
+</div>
+
+<!-- ===== DAY 2 ===== -->
+<div id="d2" class="day-panel">
+  <div class="day-header">
+    <div><div class="day-title">Day 2 — Fri, Jun 12</div><div class="day-subtitle">Moraine Lake → Lake Louise → Banff</div></div>
+    <div class="stay-chip">🏠 Airbnb Canmore</div>
+  </div>
+  <div class="park-banner">🎫 <strong>Reminder:</strong> Family Discovery Park Pass — put on car screen for Banff &amp; Jasper entry.</div>
+  <div class="sec-label">Schedule</div>
+  <div class="timeline">
+
+    <div class="tl-item" data-time="06:30">
+      <div class="tl-left"><span class="tl-time">6:30<br>AM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">食早餐</div><div class="card-cn">第一日買既bagel 🥯</div></div><span class="card-type type-food">Breakfast</span></div>
+        <div class="card-addr">📍 Airbnb, 1160 Railway Ave, Canmore · Ends 7:00 AM</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="07:00">
+      <div class="tl-left"><span class="tl-time">7:00<br>AM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發到 Lake Louise Resort &amp; Shuttle</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~50.6 mi, 54 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 50.6 mi · ~54 mins</div><div class="dir-steps"><ol>
+          <li>Head northwest on Railway Ave toward Gateway St — 0.4 mi</li>
+          <li>Turn left onto Bow Valley Trail / AB-1A W — 1.1 mi</li>
+          <li>Slight right onto ramp to Banff — 0.2 mi</li>
+          <li>Merge onto Trans-Canada Hwy / AB-1 W — 46.9 mi</li>
+          <li>Take exit toward Lake Louise — 0.3 mi</li>
+          <li>Merge onto Bow Valley Pkwy / Whitehorn Rd / AB-1A E toward Ski Area — 0.4 mi</li>
+          <li>Continue straight on restricted road — 1.2 mi</li>
+          <li>Turn right — destination on right — 125 ft</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=1160+Railway+Avenue+Canmore&destination=Lake+Louise+Ski+Resort+Whitehorn+Road+Lake+Louise+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="08:00">
+      <div class="tl-left"><span class="tl-time">8:00<br>AM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Park &amp; Ride Shuttle</div><div class="card-cn">莫蓮湖 / 路易絲湖班車</div></div><span class="card-type type-activity">Shuttle</span></div>
+        <div class="card-addr">📍 1 Whitehorn Rd, Lake Louise · Ends 8:30 AM</div>
+        <div class="card-note note-warn">⏰ Arrive BEFORE 8:00 AM for easier parking!</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="08:30">
+      <div class="tl-left"><span class="tl-time">8:30<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Moraine Lake</div><div class="card-cn">夢蓮湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Moraine Lake Rockpile Trail · Ends 10:30 AM</div>
+        <div class="card-note">🥾 直上 Rockpile Viewpoint，再慢慢行湖邊</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg" alt="Moraine Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="10:30">
+      <div class="tl-left"><span class="tl-time">10:30<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Lake Louise</div><div class="card-cn">路易絲湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Lake Louise, AB · Ends 11:30 AM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/GlacierNPS_-_Lake_Louise_%282%29.jpg/1280px-GlacierNPS_-_Lake_Louise_%282%29.jpg" alt="Lake Louise" onerror="this.style.display='none'">
+        <span class="cost-tag">CAD $167.50</span>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="12:00">
+      <div class="tl-left"><span class="tl-time">12:00<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">Travel to Banff Town</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~37.3 mi, 42 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 37.3 mi · ~42 mins</div><div class="dir-steps"><ol>
+          <li>Head north on restricted road — 213 ft</li>
+          <li>Turn left, then left onto partial restricted road — 1.2 mi</li>
+          <li>Continue onto Bow Valley Pkwy / AB-1A W — 0.6 mi</li>
+          <li>Turn left onto Trans Canada Hwy 1 E / AB-93 ramp toward Banff — 0.3 mi</li>
+          <li>Merge onto Trans-Canada Hwy / AB-1 E — 33.8 mi</li>
+          <li>Take Norquay Rd exit, then Mt Norquay Rd — 0.6 mi</li>
+          <li>Turn left onto Railway Ave, then to Banff Ave — 0.5 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Lake+Louise+AB&destination=Banff+Avenue+Banff+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="13:00">
+      <div class="tl-left"><span class="tl-time">1:00<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Lunch</div><div class="card-cn">午餐</div></div><span class="card-type type-food">Lunch</span></div><div class="card-addr">📍 Banff Town</div></div>
+    </div>
+
+    <div class="tl-item" data-time="14:00">
+      <div class="tl-left"><span class="tl-time">2:00<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">周圍行下</div><div class="card-cn">班夫大道散步</div></div><span class="card-type type-activity">Explore</span></div><div class="card-addr">📍 Banff Avenue · Ends 3:15 PM</div></div>
+    </div>
+
+    <div class="tl-item" data-time="15:30">
+      <div class="tl-left"><span class="tl-time">3:30<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Surprise Corner &amp; Bow Falls</div><div class="card-cn">驚喜角及弓河瀑布</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Buffalo St, Banff · Ends 3:45 PM · ☎️ (403) 762-1550</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Bow_Falls_Banff_Alberta_Canada_05.jpg/1280px-Bow_Falls_Banff_Alberta_Canada_05.jpg" alt="Bow Falls Banff" onerror="this.style.display='none'">
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Surprise+Corner+Viewpoint+Banff+AB" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="16:15">
+      <div class="tl-left"><span class="tl-time">4:15<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">To Banff Gondola</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~2.8 mi, 12 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 2.8 mi · ~12 mins</div><div class="dir-steps"><ol>
+          <li>Head northwest toward Bow Falls Ave / River Ave — 318 ft</li>
+          <li>Continue onto Bow Falls Ave / River Ave — 0.2 mi</li>
+          <li>Turn left onto Rundle Ave — 0.2 mi</li>
+          <li>Rundle Ave becomes Kootenay Ave — 0.2 mi</li>
+          <li>Turn left onto Mountain Ave — 1.9 mi</li>
+          <li>Turn left, right, left to destination — 0.2 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Surprise+Corner+Banff&destination=Banff+Gondola+100+Mountain+Ave+Banff" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="16:45">
+      <div class="tl-left"><span class="tl-time">4:45<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Banff Gondola</div><div class="card-cn">班夫纜車</div></div><span class="card-type type-activity">Activity</span></div>
+        <div class="card-addr">📍 100 Mountain Ave, Banff · Ends 6:30 PM · ☎️ (866) 756-1904</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Banff_Gondola_2016.jpg/1280px-Banff_Gondola_2016.jpg" alt="Banff Gondola" onerror="this.style.display='none'">
+        <a class="map-btn" href="https://www.banffjaspercollection.com/attractions/banff-gondola/" target="_blank">🔗 Website</a>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="19:00">
+      <div class="tl-left"><span class="tl-time">7:00<br>PM</span><div class="tl-dot dot-food"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">The Balkan Mediterranean Restaurant</div><div class="card-cn">希臘菜晚飯 🍢</div></div><span class="card-type type-food">Dinner</span></div>
+        <div class="card-addr">📍 Banff Avenue, Banff · Booked: 2026-05-10</div>
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=The+Balkan+Mediterranean+Restaurant+Banff" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <div class="photo-section-title">📷 Day 2 Photos</div>
+    <div class="photo-section-sub">Moraine Lake → Lake Louise → Banff</div>
+    <div class="mem-upload-area" id="upload-area-m2"><div class="mem-upload-icon">📁</div><div class="mem-upload-text">Tap to add photos &amp; videos</div></div>
+    <input type="file" id="mem-input-m2" multiple accept="image/*,video/*" style="display:none">
+    <div class="mem-grid" id="mem-grid-m2"></div>
+    <input type="text" class="mem-caption" id="mem-caption-m2" placeholder="Caption for this day…">
+  </div>
+</div>
+
+<!-- ===== DAY 3 ===== -->
+<div id="d3" class="day-panel">
+  <div class="day-header">
+    <div><div class="day-title">Day 3 — Sat, Jun 13</div><div class="day-subtitle">Canmore checkout → Bow Lake → Peyto → Columbia Icefield → Hinton</div></div>
+    <div class="stay-chip">🏠 Airbnb Hinton</div>
+  </div>
+  <div class="sec-label">Schedule</div>
+  <div class="timeline">
+    <div class="tl-item" data-time="10:00"><div class="tl-left"><span class="tl-time">10:00<br>AM</span><div class="tl-dot dot-stay"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-stay"><div class="card-top"><div><div class="card-name">Airbnb Canmore — Check-out</div><div class="card-cn">確認碼 HMQSNCCN2N</div></div><span class="card-type type-stay">Check-out</span></div><div class="card-addr">📍 1160 Railway Avenue, Canmore</div></div>
+    </div>
+    <div class="tl-item" data-time="11:00"><div class="tl-left"><span class="tl-time">11:00<br>AM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Lunch</div><div class="card-cn">午餐</div></div><span class="card-type type-food">Lunch</span></div></div>
+    </div>
+    <div class="tl-item" data-time="12:15"><div class="tl-left"><span class="tl-time">12:15<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發北行</div><div class="card-cn">前往 Peyto Lake via Icefields Pkwy</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~62.8 mi, 1h 10m)</button>
+        <div class="dir-body"><div class="dir-summary">📍 62.8 mi · ~1h 10m</div><div class="dir-steps"><ol>
+          <li>Head northeast on Banff Ave — 171 ft</li>
+          <li>Turn left onto Marten St, right onto Moose St — 0.4 mi</li>
+          <li>Exit via Railway Ave to Mt Norquay Rd — 0.7 mi</li>
+          <li>Merge onto Trans-Canada Hwy / AB-1 W — 35.7 mi</li>
+          <li>Exit onto AB-93 N (Icefields Pkwy) toward Jasper — 25.0 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Banff+AB&destination=Peyto+Lake+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+    <div class="tl-item" data-time="13:15"><div class="tl-left"><span class="tl-time">1:15<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Bow Lake (Stop by)</div><div class="card-cn">弓湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Icefields Pkwy, AB · Ends 1:35 PM</div>
+        <div class="card-note">⏱ Stay ~20 mins</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Bow_Lake_Banff_NP.jpg/1280px-Bow_Lake_Banff_NP.jpg" alt="Bow Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="14:00"><div class="tl-left"><span class="tl-time">2:00<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Peyto Lake</div><div class="card-cn">貝托湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Lake Louise, AB T0L 1E0 · Ends 2:35 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Peyto_Lake-Banff_NP-Canada.jpg/1280px-Peyto_Lake-Banff_NP-Canada.jpg" alt="Peyto Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="14:20"><div class="tl-left"><span class="tl-time">2:20<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發到冰川</div><div class="card-cn">前往 Columbia Icefield</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~53.2 mi, 1h 1m)</button>
+        <div class="dir-body"><div class="dir-summary">📍 53.2 mi · ~1h 1m</div><div class="dir-steps"><ol>
+          <li>Head southeast from Peyto Lake — 171 ft</li>
+          <li>Turn left, right, then left — 0.3 mi</li>
+          <li>Turn left onto AB-93 N — destination on right — 52.9 mi</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Peyto+Lake+AB&destination=Columbia+Icefield+Glacier+Adventure+Jasper+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+    <div class="tl-item" data-time="15:00"><div class="tl-left"><span class="tl-time">3:00<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Parking &amp; Check-in</div><div class="card-cn">冰川停車報到</div></div></div><div class="card-addr">📍 93 Icefields Parkway, Jasper · Ends 3:45 PM</div><div class="card-note note-warn">⏰ 3:30 PM boarding — be there early!</div></div>
+    </div>
+    <div class="tl-item" data-time="15:45"><div class="tl-left"><span class="tl-time">3:45<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">冰川之旅 · Columbia Icefield</div><div class="card-cn">哥倫比亞冰川探險 + 天空步道</div></div><span class="card-type type-activity">Glacier</span></div>
+        <div class="card-addr">📍 93 Icefields Pkwy · Ends 5:45 PM · ☎️ (866) 606-6700</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Athabasca_Glacier_2.jpg/1280px-Athabasca_Glacier_2.jpg" alt="Columbia Icefield" onerror="this.style.display='none'">
+        <a class="map-btn" href="https://www.banffjaspercollection.com/attractions/glacier-adventure/" target="_blank">🔗 Website</a>
+      </div>
+    </div>
+    <div class="tl-item" data-time="17:45"><div class="tl-left"><span class="tl-time">5:45<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發去 Jasper Town</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~64.0 mi, 1h 9m)</button>
+        <div class="dir-body"><div class="dir-summary">📍 64.0 mi · ~1h 9m</div><div class="dir-steps"><ol>
+          <li>Head west on AB-93 N toward Snocoach Rd (toll road) — 63.3 mi</li>
+          <li>Continue straight onto Connaught Dr — 0.6 mi</li>
+          <li>Turn left onto Spruce Ave — 318 ft</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Columbia+Icefield+AB&destination=Patricia+Street+Jasper+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+    <div class="tl-item" data-time="19:15"><div class="tl-left"><span class="tl-time">7:15<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Restaurant</div><div class="card-cn">晚飯</div></div><span class="card-type type-food">Dinner</span></div><div class="card-addr">📍 Jasper Town</div></div>
+    </div>
+    <div class="tl-item" data-time="21:00"><div class="tl-left"><span class="tl-time">9:00<br>PM</span><div class="tl-dot dot-stay"></div></div>
+      <div class="tl-card card-stay"><div class="card-top"><div><div class="card-name">Airbnb Hinton — Check-in</div><div class="card-cn">確認碼 HMN4CZZMSQ</div></div><span class="card-type type-stay">Stay</span></div><div class="card-addr">📍 24415 East River Road, Hinton, AB</div><div class="card-note">🪧 Look for the "Hidden Hollow" sign</div><span class="cost-tag">CAD $945.34 total</span></div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <div class="photo-section-title">📷 Day 3 Photos</div>
+    <div class="photo-section-sub">Peyto Lake → Columbia Icefield → Hinton</div>
+    <div class="mem-upload-area" id="upload-area-m3"><div class="mem-upload-icon">📁</div><div class="mem-upload-text">Tap to add photos &amp; videos</div></div>
+    <input type="file" id="mem-input-m3" multiple accept="image/*,video/*" style="display:none">
+    <div class="mem-grid" id="mem-grid-m3"></div>
+    <input type="text" class="mem-caption" id="mem-caption-m3" placeholder="Caption for this day…">
+  </div>
+</div>
+
+<!-- ===== DAY 4 ===== -->
+<div id="d4" class="day-panel">
+  <div class="day-header">
+    <div><div class="day-title">Day 4 — Sun, Jun 14</div><div class="day-subtitle">Hinton → Jasper → Maligne Lake Cruise → Pyramid Lake</div></div>
+    <div class="stay-chip">🏠 Airbnb Hinton</div>
+  </div>
+  <div class="sec-label">Schedule</div>
+  <div class="timeline">
+    <div class="tl-item" data-time="08:30"><div class="tl-left"><span class="tl-time">8:30<br>AM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Quick Breakfast</div><div class="card-cn">快速早餐</div></div><span class="card-type type-food">Breakfast</span></div></div>
+    </div>
+    <div class="tl-item" data-time="09:30"><div class="tl-left"><span class="tl-time">9:30<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Beaver Boardwalk</div><div class="card-cn">河獺木棧道</div></div><span class="card-type type-view">Nature</span></div>
+        <div class="card-addr">📍 433 Collinge Rd, Hinton · Ends 10:00 AM · ☎️ (780) 865-6066</div>
+        <div class="card-note">🦦 有機會見到河獺!</div>
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Beaver+Boardwalk+433+Collinge+Rd+Hinton+AB" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+    <div class="tl-item" data-time="10:00"><div class="tl-left"><span class="tl-time">10:00<br>AM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">去 Jasper Town</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~49.0 mi, 56 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 49.0 mi · ~56 mins</div><div class="dir-steps"><ol>
+          <li>Head northeast on Collinge Rd toward Carriage Ln — 456 ft</li>
+          <li>Turn left onto Mountain St — 0.9 mi</li>
+          <li>Turn left onto AB-16 — 15.9 mi</li>
+          <li>Keep right to stay on AB-16 — 31.5 mi</li>
+          <li>Turn right onto Hazel Ave, left onto Connaught Dr — 0.6 mi</li>
+          <li>Turn right onto Spruce Ave — 279 ft</li>
+        </ol></div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=24415+East+River+Road+Hinton+AB&destination=Patricia+Street+Jasper+AB" target="_blank">📍 Open in Maps</a></div>
+      </div>
+    </div>
+    <div class="tl-item" data-time="11:00"><div class="tl-left"><span class="tl-time">11:00<br>AM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Brunch</div><div class="card-cn">早午餐</div></div><span class="card-type type-food">Brunch</span></div><div class="card-addr">📍 Jasper Town</div></div>
+    </div>
+    <div class="tl-item" data-time="12:10"><div class="tl-left"><span class="tl-time">12:10<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Patricia Lake</div><div class="card-cn">芭翠西亞湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Pyramid Lk Rd, Jasper · Ends 12:45 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Patricia_Lake_Jasper.jpg/1280px-Patricia_Lake_Jasper.jpg" alt="Patricia Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="13:30"><div class="tl-left"><span class="tl-time">1:30<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Medicine Lake</div><div class="card-cn">藥湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Improvement District No. 12, AB · Ends 1:45 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Medicine_Lake_Jasper_NP.jpg/1280px-Medicine_Lake_Jasper_NP.jpg" alt="Medicine Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="15:45"><div class="tl-left"><span class="tl-time">3:45<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Maligne Lake Cruise</div><div class="card-cn">瑪琳湖遊船</div></div><span class="card-type type-activity">Cruise</span></div>
+        <div class="card-addr">📍 Maligne Lake, AB · Conf: 3890029 · Ends 5:15 PM</div>
+        <div class="card-note note-warn">⏰ Arrive 15 mins early!<br>🚢 LEFT side going out · RIGHT side coming back<br>🏔 Walk to the far right viewing point</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Maligne_Lake_Cruise_2009.jpg/1280px-Maligne_Lake_Cruise_2009.jpg" alt="Maligne Lake" onerror="this.style.display='none'">
+        <span class="cost-tag">CAD $1,808.10</span>
+        <a class="map-btn" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/" target="_blank">🔗 Website</a>
+      </div>
+    </div>
+    <div class="tl-item" data-time="19:00"><div class="tl-left"><span class="tl-time">7:00<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Restaurant</div><div class="card-cn">晚飯</div></div><span class="card-type type-food">Dinner</span></div></div>
+    </div>
+    <div class="tl-item" data-time="20:30"><div class="tl-left"><span class="tl-time">8:30<br>PM</span><div class="tl-dot dot-view"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Pyramid Lake</div><div class="card-cn">金字塔湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Jasper, AB · Ends 9:30 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pyramid_Lake_Jasper.jpg/1280px-Pyramid_Lake_Jasper.jpg" alt="Pyramid Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <div class="photo-section-title">📷 Day 4 Photos</div>
+    <div class="photo-section-sub">Jasper · Maligne Lake Cruise</div>
+    <div class="mem-upload-area" id="upload-area-m4"><div class="mem-upload-icon">📁</div><div class="mem-upload-text">Tap to add photos &amp; videos</div></div>
+    <input type="file" id="mem-input-m4" multiple accept="image/*,video/*" style="display:none">
+    <div class="mem-grid" id="mem-grid-m4"></div>
+    <input type="text" class="mem-caption" id="mem-caption-m4" placeholder="Caption for this day…">
+  </div>
+</div>
+
+<!-- ===== DAY 5 ===== -->
+<div id="d5" class="day-panel">
+  <div class="day-header">
+    <div><div class="day-title">Day 5 — Mon, Jun 15</div><div class="day-subtitle">Hinton → Sunwapta → Waterfowl → Canmore tea → Calgary</div></div>
+    <div class="stay-chip">🏠 Airbnb Calgary</div>
+  </div>
+  <div class="sec-label">Schedule</div>
+  <div class="timeline">
+    <div class="tl-item" data-time="09:00"><div class="tl-left"><span class="tl-time">9:00<br>AM</span><div class="tl-dot dot-stay"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-stay"><div class="card-top"><div><div class="card-name">Airbnb Hinton — Check-out</div><div class="card-cn">確認碼 HMN4CZZMSQ</div></div><span class="card-type type-stay">Check-out</span></div><div class="card-addr">📍 24415 East River Road, Hinton · "Hidden Hollow" sign</div></div>
+    </div>
+    <div class="tl-item" data-time="10:35"><div class="tl-left"><span class="tl-time">10:35<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Sunwapta Falls</div><div class="card-cn">森華達瀑布</div></div><span class="card-type type-view">Waterfall</span></div>
+        <div class="card-addr">📍 Icefields Pkwy, Jasper · Ends 10:50 AM</div>
+        <div class="card-note">⏱ Rest 15 mins</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Sunwapta_Falls.jpg/1280px-Sunwapta_Falls.jpg" alt="Sunwapta Falls" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="11:20"><div class="tl-left"><span class="tl-time">11:20<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Tangle Falls</div><div class="card-cn">纏繞瀑布</div></div><span class="card-type type-view">Waterfall</span></div>
+        <div class="card-addr">📍 Icefields Pkwy · Ends 11:30 AM</div>
+        <div class="card-note">⏱ Stop 10 mins</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Tangle_Creek_Falls.jpg/800px-Tangle_Creek_Falls.jpg" alt="Tangle Falls" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="12:30"><div class="tl-left"><span class="tl-time">12:30<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Waterfowl Lakes</div><div class="card-cn">水鳥湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Icefields Pkwy · Ends 12:50 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Waterfowl_Lakes_Icefields_Parkway.jpg/1280px-Waterfowl_Lakes_Icefields_Parkway.jpg" alt="Waterfowl Lakes" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="tl-item" data-time="13:30"><div class="tl-left"><span class="tl-time">1:30<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Stop by Lake Louise Resort</div><div class="card-cn">路易絲湖 (如需洗手間)</div></div></div><div class="card-note">🚻 Washroom stop if needed</div></div>
+    </div>
+    <div class="tl-item" data-time="14:30"><div class="tl-left"><span class="tl-time">2:30<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Tea in Banff / Canmore</div><div class="card-cn">下午茶 ☕</div></div><span class="card-type type-food">Café</span></div></div>
+    </div>
+    <div class="tl-item" data-time="16:00"><div class="tl-left"><span class="tl-time">4:00<br>PM</span><div class="tl-dot dot-stay"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-stay"><div class="card-top"><div><div class="card-name">Airbnb Calgary — Check-in</div><div class="card-cn">確認碼 HMDDY5T9QQ</div></div><span class="card-type type-stay">Stay</span></div><div class="card-addr">📍 6035 4 Street Northeast, Calgary, AB T2K 4Z5</div><span class="cost-tag">CAD $373.16 total</span></div>
+    </div>
+    <div class="tl-item" data-time="18:30"><div class="tl-left"><span class="tl-time">6:30<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">River Café</div><div class="card-cn">河邊咖啡廳晚飯</div></div><span class="card-type type-food">Dinner</span></div><div class="card-addr">📍 25 Prince's Island Park SW, Calgary · ☎️ (403) 261-7670</div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=River+Cafe+25+Princes+Island+Park+Calgary" target="_blank">📍 Maps</a></div>
+    </div>
+    <div class="tl-item" data-time="20:30"><div class="tl-left"><span class="tl-time">8:30<br>PM</span><div class="tl-dot dot-view"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Crescent Heights Lookout</div><div class="card-cn">卡爾加里夕陽觀景台</div></div><span class="card-type type-view">Sunset</span></div>
+        <div class="card-addr">📍 240 Crescent Rd NW, Calgary · Ends 9:30 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Calgary_Crescent_Heights_2014.jpg/1280px-Calgary_Crescent_Heights_2014.jpg" alt="Calgary Sunset" onerror="this.style.display='none'">
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Crescent+Heights+Lookout+Point+Calgary" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <div class="photo-section-title">📷 Day 5 Photos</div>
+    <div class="photo-section-sub">Sunwapta · Waterfowl Lakes · Calgary</div>
+    <div class="mem-upload-area" id="upload-area-m5"><div class="mem-upload-icon">📁</div><div class="mem-upload-text">Tap to add photos &amp; videos</div></div>
+    <input type="file" id="mem-input-m5" multiple accept="image/*,video/*" style="display:none">
+    <div class="mem-grid" id="mem-grid-m5"></div>
+    <input type="text" class="mem-caption" id="mem-caption-m5" placeholder="Caption for this day…">
+  </div>
+</div>
+
+<!-- ===== DAY 6 ===== -->
+<div id="d6" class="day-panel">
+  <div class="day-header">
+    <div><div class="day-title">Day 6 — Tue, Jun 16</div><div class="day-subtitle">Calgary downtown → Car return → Fly home</div></div>
+    <div class="stay-chip">✈️ Fly home</div>
+  </div>
+  <div class="sec-label">Schedule</div>
+  <div class="timeline">
+    <div class="tl-item" data-time="09:30"><div class="tl-left"><span class="tl-time">9:30<br>AM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Breakfast</div><div class="card-cn">早餐</div></div><span class="card-type type-food">Breakfast</span></div></div>
+    </div>
+    <div class="tl-item" data-time="10:00"><div class="tl-left"><span class="tl-time">10:00<br>AM</span><div class="tl-dot dot-stay"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-stay"><div class="card-top"><div><div class="card-name">Airbnb Calgary — Check-out</div><div class="card-cn">確認碼 HMDDY5T9QQ</div></div><span class="card-type type-stay">Check-out</span></div><div class="card-addr">📍 6035 4 Street Northeast, Calgary</div></div>
+    </div>
+    <div class="tl-item" data-time="10:30"><div class="tl-left"><span class="tl-time">10:30<br>AM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Downtown Walk — Wonderland Sculpture</div><div class="card-cn">市中心散步 · 史蒂芬大道</div></div><span class="card-type type-activity">Explore</span></div>
+        <div class="card-addr">📍 110 6 Ave SE, Calgary · Ends 12:30 PM</div>
+        <div class="card-note">📍 附近行下，Stephen Avenue Walk</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wonderland_Sculpture_Calgary.jpg/1280px-Wonderland_Sculpture_Calgary.jpg" alt="Wonderland Sculpture Calgary" onerror="this.style.display='none'">
+        <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=110+6+Ave+SE+Calgary+Wonderland+Sculpture" target="_blank">📍 Maps</a>
+      </div>
+    </div>
+    <div class="tl-item" data-time="13:00"><div class="tl-left"><span class="tl-time">1:00<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Lunch</div><div class="card-cn">午餐</div></div><span class="card-type type-food">Lunch</span></div></div>
+    </div>
+    <div class="tl-item" data-time="15:30"><div class="tl-left"><span class="tl-time">3:30<br>PM</span><div class="tl-dot dot-transport"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">租車還車 Enterprise</div><div class="card-cn">歸還 Chrysler Pacifica 7座</div></div><span class="card-type type-transport">Car Return</span></div><div class="card-addr">📍 Calgary, AB T2E 6W5</div><a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=Enterprise+Rent+A+Car+Calgary+Airport" target="_blank">📍 Maps</a></div>
+    </div>
+  </div>
+  <div class="photo-section">
+    <div class="photo-section-title">📷 Day 6 Photos</div>
+    <div class="photo-section-sub">Calgary downtown &amp; fly home</div>
+    <div class="mem-upload-area" id="upload-area-m6"><div class="mem-upload-icon">📁</div><div class="mem-upload-text">Tap to add photos &amp; videos</div></div>
+    <input type="file" id="mem-input-m6" multiple accept="image/*,video/*" style="display:none">
+    <div class="mem-grid" id="mem-grid-m6"></div>
+    <input type="text" class="mem-caption" id="mem-caption-m6" placeholder="Caption for this day…">
+  </div>
+</div>
+
+<!-- ===== EXPENSES ===== -->
+<div id="expenses" class="day-panel">
+  <div class="exp-title">💰 Trip Expenses</div>
+  <div class="exp-subtitle">Track spending across all 6 days</div>
+  <div id="exp-container"></div>
+  <div class="exp-grand">
+    <div class="exp-grand-label">Grand Total</div>
+    <div class="exp-grand-amt" id="grand-total">CAD $0.00</div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// ============ TABS ============
+document.getElementById('tabBar').addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-tab]');
+  if (!btn) return;
+  var id = btn.dataset.tab;
+  document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  var panel = document.getElementById(id);
+  if (panel) panel.classList.add('active');
+  btn.classList.add('active');
+});
+
+// ============ DIRECTIONS ============
+function toggleDir(btn) {
+  var body = btn.nextElementSibling;
+  var open = body.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+
+// ============ NOW HIGHLIGHT ============
+var nowItem = null;
+
+function highlightNow() {
+  // Convert to MDT (UTC-6)
+  var now = new Date();
+  var mdt = new Date(now.getTime() + (now.getTimezoneOffset() + (-360)) * -60000);
+  // Wait — simpler: UTC offset for MDT is -360 min
+  // MDT time = UTC - 360 min
+  var utcMs = now.getTime() + now.getTimezoneOffset() * 60000; // UTC ms
+  var mdtMs = utcMs - 6 * 3600000; // MDT = UTC-6
+  var mdt2 = new Date(mdtMs);
+
+  var y = mdt2.getFullYear();
+  var mo = String(mdt2.getMonth()+1).padStart(2,'0');
+  var d = String(mdt2.getDate()).padStart(2,'0');
+  var todayStr = y + '-' + mo + '-' + d;
+  var nowMin = mdt2.getHours() * 60 + mdt2.getMinutes();
+
+  var dayMap = { d1:'2026-06-11', d2:'2026-06-12', d3:'2026-06-13', d4:'2026-06-14', d5:'2026-06-15', d6:'2026-06-16' };
+  var targetDay = null;
+  for (var key in dayMap) { if (dayMap[key] === todayStr) { targetDay = key; break; } }
+  if (!targetDay) return;
+
+  var panel = document.getElementById(targetDay);
+  var items = panel.querySelectorAll('.tl-item[data-time]');
+  var best = null, bestT = -1;
+  items.forEach(function(item) {
+    var p = item.dataset.time.split(':');
+    var t = parseInt(p[0]) * 60 + parseInt(p[1]);
+    if (t <= nowMin && t > bestT) { bestT = t; best = item; }
+  });
+
+  // Clear old
+  if (nowItem) {
+    nowItem.classList.remove('is-now');
+    var ob = nowItem.querySelector('.now-badge');
+    if (ob) ob.remove();
+  }
+
+  if (best) {
+    nowItem = best;
+    best.classList.add('is-now');
+    var name = best.querySelector('.card-name');
+    if (name) {
+      var badge = document.createElement('span');
+      badge.className = 'now-badge';
+      badge.textContent = 'NOW';
+      name.appendChild(badge);
+    }
+  }
+
+  // Switch tab
+  var tabBtn = document.querySelector('[data-tab="' + targetDay + '"]');
+  if (tabBtn) {
+    document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    panel.classList.add('active');
+    tabBtn.classList.add('active');
+    tabBtn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  }
+  if (best) setTimeout(function() { best.scrollIntoView({ behavior:'smooth', block:'center' }); }, 400);
+}
+
+document.getElementById('jumpBar').addEventListener('click', function() {
+  if (nowItem) { nowItem.scrollIntoView({ behavior:'smooth', block:'center' }); }
+  else { highlightNow(); }
+});
+
+// ============ EXPENSES ============
+var EXP_DAYS = [
+  { key:'d1', label:'Day 1 — Thu Jun 11' },
+  { key:'d2', label:'Day 2 — Fri Jun 12' },
+  { key:'d3', label:'Day 3 — Sat Jun 13' },
+  { key:'d4', label:'Day 4 — Sun Jun 14' },
+  { key:'d5', label:'Day 5 — Mon Jun 15' },
+  { key:'d6', label:'Day 6 — Tue Jun 16' }
+];
+var expData = { d1:[], d2:[], d3:[], d4:[], d5:[], d6:[] };
+
+function buildExpenses() {
+  var container = document.getElementById('exp-container');
+  EXP_DAYS.forEach(function(d) {
+    var wrap = document.createElement('div');
+    wrap.className = 'exp-panel';
+
+    var lbl = document.createElement('div');
+    lbl.className = 'exp-day-label';
+    lbl.textContent = d.label;
+    wrap.appendChild(lbl);
+
+    var rows = document.createElement('div');
+    rows.id = 'exp-rows-' + d.key;
+    wrap.appendChild(rows);
+
+    var addBtn = document.createElement('button');
+    addBtn.className = 'exp-add-btn';
+    addBtn.textContent = '＋ Add expense';
+    addBtn.type = 'button';
+    addBtn.addEventListener('click', function() { addRow(d.key); });
+    wrap.appendChild(addBtn);
+
+    var totalBar = document.createElement('div');
+    totalBar.className = 'exp-total-bar';
+    totalBar.innerHTML = '<span style="font-size:12px;color:var(--stone)">Day total</span><span id="day-total-' + d.key + '">CAD $0.00</span>';
+    wrap.appendChild(totalBar);
+
+    container.appendChild(wrap);
+  });
+}
+
+function addRow(key) {
+  expData[key].push({ item:'', amt:'', who:'' });
+  renderRows(key);
+}
+
+function removeRow(key, idx) {
+  expData[key].splice(idx, 1);
+  renderRows(key);
+}
+
+function renderRows(key) {
+  var container = document.getElementById('exp-rows-' + key);
+  if (!container) return;
+  container.innerHTML = '';
+  expData[key].forEach(function(row, idx) {
+    var div = document.createElement('div');
+    div.className = 'exp-row';
+
+    var i1 = document.createElement('input'); i1.className='inp-item'; i1.type='text'; i1.placeholder='Item'; i1.value=row.item;
+    i1.addEventListener('input', function() { expData[key][idx].item = this.value; });
+
+    var i2 = document.createElement('input'); i2.className='inp-amt'; i2.type='number'; i2.placeholder='$'; i2.value=row.amt; i2.inputMode='decimal';
+    i2.addEventListener('input', function() { expData[key][idx].amt = this.value; recalc(key); });
+
+    var i3 = document.createElement('input'); i3.className='inp-who'; i3.type='text'; i3.placeholder='Paid by'; i3.value=row.who;
+    i3.addEventListener('input', function() { expData[key][idx].who = this.value; });
+
+    var del = document.createElement('button'); del.className='exp-del'; del.textContent='×'; del.type='button';
+    del.addEventListener('click', function() { removeRow(key, idx); });
+
+    div.appendChild(i1); div.appendChild(i2); div.appendChild(i3); div.appendChild(del);
+    container.appendChild(div);
+  });
+  recalc(key);
+}
+
+function recalc(key) {
+  var total = 0;
+  expData[key].forEach(function(r) { var v = parseFloat(r.amt); if (!isNaN(v)) total += v; });
+  var el = document.getElementById('day-total-' + key);
+  if (el) el.textContent = 'CAD $' + total.toFixed(2);
+  var grand = 0;
+  Object.keys(expData).forEach(function(k) { expData[k].forEach(function(r) { var v = parseFloat(r.amt); if (!isNaN(v)) grand += v; }); });
+  var gel = document.getElementById('grand-total');
+  if (gel) gel.textContent = 'CAD $' + grand.toFixed(2);
+}
+
+// ============ PHOTOS (per day) ============
+var MEM_KEYS = ['m1','m2','m3','m4','m5','m6'];
+var memData = { m1:[], m2:[], m3:[], m4:[], m5:[], m6:[] };
+
+function setupPhotos() {
+  MEM_KEYS.forEach(function(key) {
+    var area = document.getElementById('upload-area-' + key);
+    var inp = document.getElementById('mem-input-' + key);
+    if (!area || !inp) return;
+    area.addEventListener('click', function() { inp.click(); });
+    inp.addEventListener('change', function() {
+      Array.from(this.files).forEach(function(f) {
+        memData[key].push({ url: URL.createObjectURL(f), type: f.type, name: f.name });
+      });
+      renderGrid(key);
+      inp.value = '';
+    });
+  });
+}
+
+function renderGrid(key) {
+  var grid = document.getElementById('mem-grid-' + key);
+  if (!grid) return;
+  grid.innerHTML = '';
+  memData[key].forEach(function(item, idx) {
+    var wrap = document.createElement('div'); wrap.className = 'mem-thumb';
+    var media;
+    if (item.type.startsWith('video')) {
+      media = document.createElement('video');
+      media.src = item.url; media.muted = true; media.loop = true; media.playsInline = true;
+    } else {
+      media = document.createElement('img'); media.src = item.url; media.alt = item.name;
+    }
+    var del = document.createElement('button'); del.className = 'mem-thumb-del'; del.textContent = '×'; del.type = 'button';
+    (function(k, i) { del.addEventListener('click', function(e) { e.stopPropagation(); URL.revokeObjectURL(memData[k][i].url); memData[k].splice(i,1); renderGrid(k); }); })(key, idx);
+    wrap.appendChild(media); wrap.appendChild(del);
+    grid.appendChild(wrap);
+  });
+}
+
+// ============ INIT ============
+buildExpenses();
+setupPhotos();
+highlightNow();
+</script>
+</body>
+</html>
