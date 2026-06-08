@@ -171,6 +171,14 @@ body {
 .exp-add-btn { width: 100%; padding: 10px; font-size: 13px; border-radius: 8px; border: 1.5px dashed var(--stone-light); background: none; cursor: pointer; color: var(--stone); font-family: 'Jost', sans-serif; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .exp-add-btn:active { background: var(--cream2); }
 .exp-total-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--stone-pale); font-size: 13px; font-weight: 500; color: var(--ink); }
+
+.exp-section-header {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-weight: 600; color: var(--pine);
+  padding: 14px 0 6px; margin-top: 4px;
+  border-bottom: 1px solid var(--pine-pale);
+  margin-bottom: 10px;
+}
 .exp-grand { background: var(--pine-pale); border: 1px solid #A8C0A4; border-radius: 10px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
 .exp-grand-label { font-size: 14px; font-weight: 500; color: var(--pine); }
 .exp-grand-amt { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--pine); }
@@ -905,17 +913,25 @@ document.getElementById('jumpBar').addEventListener('click', function() {
 
 // ============ EXPENSES ============
 var EXP_DAYS = [
-  { key:'d1', label:'Day 1 — Thu Jun 11' },
-  { key:'d2', label:'Day 2 — Fri Jun 12' },
-  { key:'d3', label:'Day 3 — Sat Jun 13' },
-  { key:'d4', label:'Day 4 — Sun Jun 14' },
-  { key:'d5', label:'Day 5 — Mon Jun 15' },
-  { key:'d6', label:'Day 6 — Tue Jun 16' }
+  { key:'v1',  label:'Sat Jun 6 — Vancouver',  tag:'' },
+  { key:'v2',  label:'Sun Jun 7 — Vancouver',   tag:'' },
+  { key:'v3',  label:'Mon Jun 8 — Vancouver',   tag:'' },
+  { key:'v4',  label:'Tue Jun 9 — Vancouver',   tag:'' },
+  { key:'v5',  label:'Wed Jun 10 — Vancouver',  tag:'' },
+  { key:'d1',  label:'Thu Jun 11 — Day 1 · Canmore',       tag:'✈️' },
+  { key:'d2',  label:'Fri Jun 12 — Day 2 · Banff',         tag:'🏔' },
+  { key:'d3',  label:'Sat Jun 13 — Day 3 · Icefield',      tag:'🧊' },
+  { key:'d4',  label:'Sun Jun 14 — Day 4 · Jasper',        tag:'🚢' },
+  { key:'d5',  label:'Mon Jun 15 — Day 5 · Calgary',       tag:'🌅' },
+  { key:'d6',  label:'Tue Jun 16 — Day 6 · Fly home',      tag:'✈️' },
+  { key:'p1',  label:'Wed Jun 17 — Vancouver',  tag:'' },
+  { key:'p2',  label:'Thu Jun 18 — Vancouver',  tag:'' },
+  { key:'p3',  label:'Fri Jun 19 — Vancouver',  tag:'' }
 ];
 var STORAGE_KEY = 'banff2026_expenses';
 var expData = (function() {
   try { var s = localStorage.getItem(STORAGE_KEY); if (s) return JSON.parse(s); } catch(e) {}
-  return { d1:[], d2:[], d3:[], d4:[], d5:[], d6:[] };
+  return { v1:[], v2:[], v3:[], v4:[], v5:[], d1:[], d2:[], d3:[], d4:[], d5:[], d6:[], p1:[], p2:[], p3:[] };
 })();
 function saveExpenses() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expData)); } catch(e) {}
@@ -923,32 +939,51 @@ function saveExpenses() {
 
 function buildExpenses() {
   var container = document.getElementById('exp-container');
-  EXP_DAYS.forEach(function(d) {
-    var wrap = document.createElement('div');
-    wrap.className = 'exp-panel';
+  var sections = [
+    { keys: ['v1','v2','v3','v4','v5'], title: '🏙 Vancouver — Pre-trip (Jun 6–10)' },
+    { keys: ['d1','d2','d3','d4','d5','d6'], title: '🏔 Banff & Jasper (Jun 11–16)' },
+    { keys: ['p1','p2','p3'], title: '🏙 Vancouver — Post-trip (Jun 17–19)' }
+  ];
+  var dayMap = {};
+  EXP_DAYS.forEach(function(d) { dayMap[d.key] = d; });
 
-    var lbl = document.createElement('div');
-    lbl.className = 'exp-day-label';
-    lbl.textContent = d.label;
-    wrap.appendChild(lbl);
+  sections.forEach(function(sec) {
+    var hdr = document.createElement('div');
+    hdr.className = 'exp-section-header';
+    hdr.textContent = sec.title;
+    container.appendChild(hdr);
 
-    var rows = document.createElement('div');
-    rows.id = 'exp-rows-' + d.key;
-    wrap.appendChild(rows);
+    sec.keys.forEach(function(key) {
+      var d = dayMap[key];
+      if (!d) return;
+      if (!expData[key]) expData[key] = [];
 
-    var addBtn = document.createElement('button');
-    addBtn.className = 'exp-add-btn';
-    addBtn.textContent = '＋ Add expense';
-    addBtn.type = 'button';
-    addBtn.addEventListener('click', function() { addRow(d.key); });
-    wrap.appendChild(addBtn);
+      var wrap = document.createElement('div');
+      wrap.className = 'exp-panel';
 
-    var totalBar = document.createElement('div');
-    totalBar.className = 'exp-total-bar';
-    totalBar.innerHTML = '<span style="font-size:12px;color:var(--stone)">Day total</span><span id="day-total-' + d.key + '">CAD $0.00</span>';
-    wrap.appendChild(totalBar);
+      var lbl = document.createElement('div');
+      lbl.className = 'exp-day-label';
+      lbl.textContent = (d.tag ? d.tag + ' ' : '') + d.label;
+      wrap.appendChild(lbl);
 
-    container.appendChild(wrap);
+      var rows = document.createElement('div');
+      rows.id = 'exp-rows-' + d.key;
+      wrap.appendChild(rows);
+
+      var addBtn = document.createElement('button');
+      addBtn.className = 'exp-add-btn';
+      addBtn.textContent = '＋ Add expense';
+      addBtn.type = 'button';
+      addBtn.addEventListener('click', function() { addRow(d.key); });
+      wrap.appendChild(addBtn);
+
+      var totalBar = document.createElement('div');
+      totalBar.className = 'exp-total-bar';
+      totalBar.innerHTML = '<span style="font-size:12px;color:var(--stone)">Day total</span><span id="day-total-' + d.key + '">CAD $0.00</span>';
+      wrap.appendChild(totalBar);
+
+      container.appendChild(wrap);
+    });
   });
 }
 
