@@ -995,6 +995,7 @@ function saveExpenses() {
 }
 
 // Real-time listener — keeps all devices in sync
+var dbInitialised = false;
 onSnapshot(expenseDocRef, function(snap) {
   if (snap.exists()) {
     var remote = snap.data();
@@ -1002,16 +1003,58 @@ onSnapshot(expenseDocRef, function(snap) {
     Object.keys(EMPTY_EXPENSES).forEach(function(key) {
       expData[key] = Array.isArray(remote[key]) ? remote[key] : [];
     });
-    // Re-render all day rows + totals
-    Object.keys(EMPTY_EXPENSES).forEach(function(key) { renderRows(key); });
     fbSyncing = false;
+
+    if (!dbInitialised) {
+      // First load — build the full DOM
+      dbInitialised = true;
+      buildExpenses();
+      Object.keys(EMPTY_EXPENSES).forEach(function(key) { renderRows(key); });
+    } else {
+      // Remote update from another device — patch inputs in place
+      // so we DON'T destroy focused inputs on the current device
+      patchExpenseInputs();
+    }
   } else {
-    // No doc yet — create it with empty data
+    // No doc yet — create it then build UI
+    dbInitialised = true;
     setDoc(expenseDocRef, expData).catch(function(err) { console.error(err); });
+    buildExpenses();
   }
 }, function(err) {
   console.error('Firestore listen failed:', err);
+  // Firestore unavailable — still build UI with empty data
+  if (!dbInitialised) { dbInitialised = true; buildExpenses(); }
 });
+
+// Patch input values from another device without rebuilding DOM
+function patchExpenseInputs() {
+  Object.keys(expData).forEach(function(key) {
+    var rows = expData[key];
+    var container = document.getElementById('exp-rows-' + key);
+    if (!container) return;
+    var existingRows = container.querySelectorAll('.exp-row');
+
+    if (existingRows.length !== rows.length) {
+      // Row count changed — safe to rebuild this day (no focus risk across days)
+      var focused = document.activeElement;
+      var focusedKey = focused ? focused.closest('[id^="exp-rows-"]') : null;
+      var focusedDayKey = focusedKey ? focusedKey.id.replace('exp-rows-', '') : null;
+      if (focusedDayKey !== key) {
+        renderRows(key);
+      }
+    } else {
+      // Same count — just update values without touching focus
+      rows.forEach(function(row, idx) {
+        var divs = existingRows[idx] ? existingRows[idx].querySelectorAll('input') : [];
+        if (divs[0] && document.activeElement !== divs[0]) divs[0].value = row.item || '';
+        if (divs[1] && document.activeElement !== divs[1]) divs[1].value = row.amt || '';
+        if (divs[2] && document.activeElement !== divs[2]) divs[2].value = row.who || '';
+      });
+    }
+    recalc(key);
+  });
+}
 
 function buildExpenses() {
   var container = document.getElementById('exp-container');
@@ -1245,7 +1288,7 @@ function showCopied(btn) {
 }
 
 // ============ INIT ============
-buildExpenses();
+// buildExpenses() is called from onSnapshot after first Firestore load
 setupPhotos();
 highlightNow();
 </script>
