@@ -394,10 +394,11 @@ body {
 <!-- ===== DAY 2 ===== -->
 <div id="d2" class="day-panel">
   <div class="day-header">
-    <div><div class="day-title">Day 2 — Fri, Jun 12</div><div class="day-subtitle">Moraine Lake → Lake Louise → Banff</div></div>
+    <div><div class="day-title">Day 2 — Fri, Jun 12</div><div class="day-subtitle">Banff Gondola → Lake Louise → Moraine Lake</div></div>
     <div class="stay-chip">🏠 Airbnb Canmore</div>
   </div>
   <div class="park-banner">🎫 <strong>Reminder:</strong> Family Discovery Park Pass — put on car screen for Banff &amp; Jasper entry.</div>
+  <div class="park-banner" style="background:var(--sky-pale);border-color:var(--sky-light);color:var(--sky);">🔄 <strong>Updated schedule</strong> — revised plan: Gondola first thing in the morning, then Lake Louise &amp; Moraine Lake in the afternoon via shuttle.</div>
   <div class="sec-label">Schedule</div>
   <div class="timeline">
 
@@ -412,119 +413,139 @@ body {
     <div class="tl-item" data-time="07:00">
       <div class="tl-left"><span class="tl-time">7:00<br>AM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
       <div class="tl-card card-drive">
-        <div class="card-top"><div><div class="card-name">出發到 Lake Louise Resort &amp; Shuttle</div></div></div>
-        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~50.6 mi, 54 mins)</button>
-        <div class="dir-body"><div class="dir-summary">📍 50.6 mi · ~54 mins</div><div class="dir-steps"><ol>
-          <li>Head northwest on Railway Ave toward Gateway St — 0.4 mi</li>
-          <li>Turn left onto Bow Valley Trail / AB-1A W — 1.1 mi</li>
-          <li>Slight right onto ramp to Banff — 0.2 mi</li>
-          <li>Merge onto Trans-Canada Hwy / AB-1 W — 46.9 mi</li>
-          <li>Take exit toward Lake Louise — 0.3 mi</li>
-          <li>Merge onto Bow Valley Pkwy / Whitehorn Rd / AB-1A E toward Ski Area — 0.4 mi</li>
-          <li>Continue straight on restricted road — 1.2 mi</li>
-          <li>Turn right — destination on right — 125 ft</li>
-        </ol></div><span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('Lake Louise Ski Resort Whitehorn Road Lake Louise AB','1160 Railway Avenue Canmore');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('Lake Louise Ski Resort Whitehorn Road Lake Louise AB',this)" type="button">📋 Copy address</button></span></div>
+        <div class="card-top"><div><div class="card-name">出發到 Banff Train Station</div></div></div>
+        <span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('Banff Train Station Banff AB','1160 Railway Avenue Canmore');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('Banff Train Station Banff AB',this)" type="button">📋 Copy address</button></span>
       </div>
     </div>
 
-    <div class="tl-item" data-time="08:00">
-      <div class="tl-left"><span class="tl-time">8:00<br>AM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+    <div class="tl-item" data-time="08:50">
+      <div class="tl-left"><span class="tl-time">8:50<br>AM</span><div class="tl-dot dot-transport"></div><div class="tl-line"></div></div>
       <div class="tl-card">
-        <div class="card-top"><div><div class="card-name">Park &amp; Ride Shuttle</div><div class="card-cn">莫蓮湖 / 路易絲湖班車</div></div><span class="card-type type-activity">Shuttle</span></div>
-        <div class="card-addr">📍 1 Whitehorn Rd, Lake Louise · Ends 8:30 AM</div>
-        <div class="card-note note-warn">⏰ Arrive BEFORE 8:00 AM for easier parking!</div>
+        <div class="card-top"><div><div class="card-name">Park at Banff Train Station</div><div class="card-cn">班夫火車站停車</div></div><span class="card-type type-transport">Park</span></div>
+        <div class="card-addr">📍 Banff Train Station, Banff, AB</div>
       </div>
     </div>
 
-    <div class="tl-item" data-time="08:30">
-      <div class="tl-left"><span class="tl-time">8:30<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+    <div class="tl-item" data-time="09:00">
+      <div class="tl-left"><span class="tl-time">9:00<br>AM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Gondola Shuttle Departs</div><div class="card-cn">纜車接駁巴士出發</div></div><span class="card-type type-activity">Shuttle</span></div>
+        <div class="card-addr">📍 From Banff Train Station</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="09:50">
+      <div class="tl-left"><span class="tl-time">9:50<br>AM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
       <div class="tl-card card-view">
-        <div class="card-top"><div><div class="card-name">Moraine Lake</div><div class="card-cn">夢蓮湖</div></div><span class="card-type type-view">Viewpoint</span></div>
-        <div class="card-addr">📍 Moraine Lake Rockpile Trail · Ends 10:30 AM</div>
-        <div class="card-note">🥾 直上 Rockpile Viewpoint，再慢慢行湖邊</div>
-        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg" alt="Moraine Lake" onerror="this.style.display='none'">
-      </div>
-    </div>
-
-    <div class="tl-item" data-time="10:30">
-      <div class="tl-left"><span class="tl-time">10:30<br>AM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
-      <div class="tl-card card-view">
-        <div class="card-top"><div><div class="card-name">Lake Louise</div><div class="card-cn">路易絲湖</div></div><span class="card-type type-view">Viewpoint</span></div>
-        <div class="card-addr">📍 Lake Louise, AB · Ends 11:30 AM</div>
-        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/GlacierNPS_-_Lake_Louise_%282%29.jpg/1280px-GlacierNPS_-_Lake_Louise_%282%29.jpg" alt="Lake Louise" onerror="this.style.display='none'">
-        <span class="cost-tag">CAD $167.50</span>
-      </div>
-    </div>
-
-    <div class="tl-item" data-time="12:00">
-      <div class="tl-left"><span class="tl-time">12:00<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
-      <div class="tl-card card-drive">
-        <div class="card-top"><div><div class="card-name">Travel to Banff Town</div></div></div>
-        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~37.3 mi, 42 mins)</button>
-        <div class="dir-body"><div class="dir-summary">📍 37.3 mi · ~42 mins</div><div class="dir-steps"><ol>
-          <li>Head north on restricted road — 213 ft</li>
-          <li>Turn left, then left onto partial restricted road — 1.2 mi</li>
-          <li>Continue onto Bow Valley Pkwy / AB-1A W — 0.6 mi</li>
-          <li>Turn left onto Trans Canada Hwy 1 E / AB-93 ramp toward Banff — 0.3 mi</li>
-          <li>Merge onto Trans-Canada Hwy / AB-1 E — 33.8 mi</li>
-          <li>Take Norquay Rd exit, then Mt Norquay Rd — 0.6 mi</li>
-          <li>Turn left onto Railway Ave, then to Banff Ave — 0.5 mi</li>
-        </ol></div><span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('Banff Avenue Banff AB','Lake Louise AB');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('Banff Avenue Banff AB',this)" type="button">📋 Copy address</button></span></div>
-      </div>
-    </div>
-
-    <div class="tl-item" data-time="13:00">
-      <div class="tl-left"><span class="tl-time">1:00<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
-      <div class="tl-card"><div class="card-top"><div><div class="card-name">Lunch</div><div class="card-cn">午餐</div></div><span class="card-type type-food">Lunch</span></div><div class="card-addr">📍 Banff Town</div></div>
-    </div>
-
-    <div class="tl-item" data-time="14:00">
-      <div class="tl-left"><span class="tl-time">2:00<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
-      <div class="tl-card"><div class="card-top"><div><div class="card-name">周圍行下</div><div class="card-cn">班夫大道散步</div></div><span class="card-type type-activity">Explore</span></div><div class="card-addr">📍 Banff Avenue · Ends 3:15 PM</div></div>
-    </div>
-
-    <div class="tl-item" data-time="15:30">
-      <div class="tl-left"><span class="tl-time">3:30<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
-      <div class="tl-card card-view">
-        <div class="card-top"><div><div class="card-name">Surprise Corner &amp; Bow Falls</div><div class="card-cn">驚喜角及弓河瀑布</div></div><span class="card-type type-view">Viewpoint</span></div>
-        <div class="card-addr">📍 Buffalo St, Banff · Ends 3:45 PM · ☎️ (403) 762-1550</div>
-        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Bow_Falls_Banff_Alberta_Canada_05.jpg/1280px-Bow_Falls_Banff_Alberta_Canada_05.jpg" alt="Bow Falls Banff" onerror="this.style.display='none'">
-        <span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('Surprise Corner Viewpoint Banff AB','');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('Surprise Corner Viewpoint Banff AB',this)" type="button">📋 Copy address</button></span>
-      </div>
-    </div>
-
-    <div class="tl-item" data-time="16:15">
-      <div class="tl-left"><span class="tl-time">4:15<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
-      <div class="tl-card card-drive">
-        <div class="card-top"><div><div class="card-name">To Banff Gondola</div></div></div>
-        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~2.8 mi, 12 mins)</button>
-        <div class="dir-body"><div class="dir-summary">📍 2.8 mi · ~12 mins</div><div class="dir-steps"><ol>
-          <li>Head northwest toward Bow Falls Ave / River Ave — 318 ft</li>
-          <li>Continue onto Bow Falls Ave / River Ave — 0.2 mi</li>
-          <li>Turn left onto Rundle Ave — 0.2 mi</li>
-          <li>Rundle Ave becomes Kootenay Ave — 0.2 mi</li>
-          <li>Turn left onto Mountain Ave — 1.9 mi</li>
-          <li>Turn left, right, left to destination — 0.2 mi</li>
-        </ol></div><span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('Banff Gondola 100 Mountain Ave Banff','Surprise Corner Banff');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('Banff Gondola 100 Mountain Ave Banff',this)" type="button">📋 Copy address</button></span></div>
-      </div>
-    </div>
-
-    <div class="tl-item" data-time="16:45">
-      <div class="tl-left"><span class="tl-time">4:45<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
-      <div class="tl-card card-view">
-        <div class="card-top"><div><div class="card-name">Banff Gondola</div><div class="card-cn">班夫纜車</div></div><span class="card-type type-activity">Activity</span></div>
-        <div class="card-addr">📍 100 Mountain Ave, Banff · Ends 6:30 PM · ☎️ (866) 756-1904</div>
+        <div class="card-top"><div><div class="card-name">Banff Gondola — Up</div><div class="card-cn">班夫纜車上山</div></div><span class="card-type type-activity">Activity</span></div>
+        <div class="card-addr">📍 100 Mountain Ave, Banff · ☎️ (866) 756-1904</div>
         <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Banff_Gondola_2016.jpg/1280px-Banff_Gondola_2016.jpg" alt="Banff Gondola" onerror="this.style.display='none'">
         <a class="map-btn" href="https://www.banffjaspercollection.com/attractions/banff-gondola/" target="_blank">🔗 Website</a>
       </div>
     </div>
 
-    <div class="tl-item" data-time="19:00">
-      <div class="tl-left"><span class="tl-time">7:00<br>PM</span><div class="tl-dot dot-food"></div></div>
+    <div class="tl-item" data-time="11:20">
+      <div class="tl-left"><span class="tl-time">11:20<br>AM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Gondola — Down</div><div class="card-cn">纜車落山</div></div><span class="card-type type-activity">Activity</span></div>
+        <div class="card-addr">📍 Banff Gondola base station</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="11:35">
+      <div class="tl-left"><span class="tl-time">11:35<br>AM /<br>12:05<br>PM</span><div class="tl-dot dot-transport"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Banff Shuttle to Legion</div><div class="card-cn">班夫接駁巴士到 Legion</div></div><span class="card-type type-transport">Shuttle</span></div>
+        <div class="card-addr">📍 Royal Canadian Legion, Banff</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="12:15">
+      <div class="tl-left"><span class="tl-time">12:15<br>PM</span><div class="tl-dot dot-food"></div><div class="tl-line"></div></div>
+      <div class="tl-card"><div class="card-top"><div><div class="card-name">Lunch</div><div class="card-cn">午餐</div></div><span class="card-type type-food">Lunch</span></div><div class="card-addr">📍 Banff Town</div></div>
+    </div>
+
+    <div class="tl-item" data-time="13:00">
+      <div class="tl-left"><span class="tl-time">1:00<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發到 Lake Louise Ski Resort</div></div></div>
+        <button class="dir-toggle" onclick="toggleDir(this)"><i class="dir-arrow">▾</i> Directions (~50.6 mi, 54 mins)</button>
+        <div class="dir-body"><div class="dir-summary">📍 50.6 mi · ~54 mins</div><div class="dir-steps"><ol>
+          <li>Head onto Trans-Canada Hwy / AB-1 W from Banff — 46.9 mi</li>
+          <li>Take exit toward Lake Louise — 0.3 mi</li>
+          <li>Merge onto Bow Valley Pkwy / Whitehorn Rd / AB-1A E toward Ski Area — 0.4 mi</li>
+          <li>Continue straight on restricted road — 1.2 mi</li>
+          <li>Turn right — destination on right — 125 ft</li>
+        </ol></div><span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('Lake Louise Ski Resort Whitehorn Road Lake Louise AB','Banff AB');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('Lake Louise Ski Resort Whitehorn Road Lake Louise AB',this)" type="button">📋 Copy address</button></span></div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="13:40">
+      <div class="tl-left"><span class="tl-time">1:40<br>PM</span><div class="tl-dot dot-transport"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Arrive &amp; Find Parking</div><div class="card-cn">到達及尋找停車位</div></div><span class="card-type type-transport">Park</span></div>
+        <div class="card-addr">📍 Lake Louise Ski Resort, Whitehorn Rd</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="14:00">
+      <div class="tl-left"><span class="tl-time">2:00<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Shuttle to Lake Louise</div><div class="card-cn">接駁巴士到路易絲湖</div></div><span class="card-type type-activity">Shuttle</span></div>
+        <div class="card-addr">📍 Park &amp; Ride — Lake Louise / Moraine Lake shuttle</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="14:30">
+      <div class="tl-left"><span class="tl-time">2:30<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Lake Louise</div><div class="card-cn">路易絲湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Lake Louise, AB · Ends ~3:30 PM</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/GlacierNPS_-_Lake_Louise_%282%29.jpg/1280px-GlacierNPS_-_Lake_Louise_%282%29.jpg" alt="Lake Louise" onerror="this.style.display='none'">
+        <span class="cost-tag">CAD $167.50</span>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="15:30">
+      <div class="tl-left"><span class="tl-time">3:30<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Connector Shuttle to Moraine Lake</div><div class="card-cn">接駁巴士到夢蓮湖</div></div><span class="card-type type-activity">Shuttle</span></div>
+        <div class="card-addr">📍 Lake Louise → Moraine Lake</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="16:00">
+      <div class="tl-left"><span class="tl-time">4:00<br>PM</span><div class="tl-dot dot-view"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-view">
+        <div class="card-top"><div><div class="card-name">Moraine Lake</div><div class="card-cn">夢蓮湖</div></div><span class="card-type type-view">Viewpoint</span></div>
+        <div class="card-addr">📍 Moraine Lake Rockpile Trail · Ends ~5:30 PM</div>
+        <div class="card-note">🥾 直上 Rockpile Viewpoint，再慢慢行湖邊</div>
+        <img class="card-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg" alt="Moraine Lake" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="17:30">
+      <div class="tl-left"><span class="tl-time">5:30<br>PM</span><div class="tl-dot dot-activity"></div><div class="tl-line"></div></div>
+      <div class="tl-card">
+        <div class="card-top"><div><div class="card-name">Return Shuttle</div><div class="card-cn">返回接駁巴士</div></div><span class="card-type type-activity">Shuttle</span></div>
+        <div class="card-addr">📍 Moraine Lake → Park &amp; Ride</div>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="18:15">
+      <div class="tl-left"><span class="tl-time">6:15<br>PM</span><div class="tl-dot dot-drive"></div><div class="tl-line"></div></div>
+      <div class="tl-card card-drive">
+        <div class="card-top"><div><div class="card-name">出發返 Canmore 食晚餐</div></div></div>
+        <span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('120 Banff Ave Banff AB T1L 1A4','Lake Louise AB');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('120 Banff Ave Banff AB T1L 1A4',this)" type="button">📋 Copy address</button></span>
+      </div>
+    </div>
+
+    <div class="tl-item" data-time="19:30">
+      <div class="tl-left"><span class="tl-time">7:30<br>PM</span><div class="tl-dot dot-food"></div></div>
       <div class="tl-card">
         <div class="card-top"><div><div class="card-name">The Balkan Mediterranean Restaurant</div><div class="card-cn">希臘菜晚飯 🍢</div></div><span class="card-type type-food">Dinner</span></div>
-        <div class="card-addr">📍 Banff Avenue, Banff · Booked: 2026-05-10</div>
-        <span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('The Balkan Mediterranean Restaurant Banff','');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('The Balkan Mediterranean Restaurant Banff',this)" type="button">📋 Copy address</button></span>
+        <div class="card-addr">📍 120 Banff Ave, Banff, AB T1L 1A4</div>
+        <span class="map-btn-wrap"><a class="map-btn" href="#" onclick="openMap('120 Banff Ave Banff AB T1L 1A4','');return false;">📍 Open in Maps</a><button class="copy-btn" onclick="copyAddr('120 Banff Ave Banff AB T1L 1A4',this)" type="button">📋 Copy address</button></span>
       </div>
     </div>
   </div>
@@ -835,7 +856,24 @@ body {
 
 </div><!-- /content -->
 
-<script>
+<script type="module">
+// ============ FIREBASE SETUP ============
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFtr7WSujL_RVVqzhwRWhpwKHLqy75zVA",
+  authDomain: "trip-planner-van.firebaseapp.com",
+  projectId: "trip-planner-van",
+  storageBucket: "trip-planner-van.firebasestorage.app",
+  messagingSenderId: "1079482972505",
+  appId: "1:1079482972505:web:ec481b88d6067724a8b448"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+const expenseDocRef = doc(db, "banff2026", "expenses");
+
 // ============ TABS ============
 document.getElementById('tabBar').addEventListener('click', function(e) {
   var btn = e.target.closest('[data-tab]');
@@ -849,7 +887,7 @@ document.getElementById('tabBar').addEventListener('click', function(e) {
 });
 
 // ============ DIRECTIONS ============
-function toggleDir(btn) {
+window.toggleDir = function toggleDir(btn) {
   var body = btn.nextElementSibling;
   var open = body.classList.toggle('open');
   btn.classList.toggle('open', open);
@@ -941,14 +979,39 @@ var EXP_DAYS = [
   { key:'p2',  label:'Thu Jun 18 — Vancouver',  tag:'' },
   { key:'p3',  label:'Fri Jun 19 — Vancouver',  tag:'' }
 ];
-var STORAGE_KEY = 'banff2026_expenses';
-var expData = (function() {
-  try { var s = localStorage.getItem(STORAGE_KEY); if (s) return JSON.parse(s); } catch(e) {}
-  return { v1:[], v2:[], v3:[], v4:[], v5:[], d1:[], d2:[], d3:[], d4:[], d5:[], d6:[], p1:[], p2:[], p3:[] };
-})();
+var EMPTY_EXPENSES = { v1:[], v2:[], v3:[], v4:[], v5:[], d1:[], d2:[], d3:[], d4:[], d5:[], d6:[], p1:[], p2:[], p3:[] };
+var expData = JSON.parse(JSON.stringify(EMPTY_EXPENSES));
+var fbSyncing = false;     // true while we're applying a remote update (avoid feedback loop)
+var saveTimer = null;
+
 function saveExpenses() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(expData)); } catch(e) {}
+  if (fbSyncing) return; // don't echo back remote changes
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(function() {
+    setDoc(expenseDocRef, expData).catch(function(err) {
+      console.error('Firestore save failed:', err);
+    });
+  }, 400); // debounce rapid typing
 }
+
+// Real-time listener — keeps all devices in sync
+onSnapshot(expenseDocRef, function(snap) {
+  if (snap.exists()) {
+    var remote = snap.data();
+    fbSyncing = true;
+    Object.keys(EMPTY_EXPENSES).forEach(function(key) {
+      expData[key] = Array.isArray(remote[key]) ? remote[key] : [];
+    });
+    // Re-render all day rows + totals
+    Object.keys(EMPTY_EXPENSES).forEach(function(key) { renderRows(key); });
+    fbSyncing = false;
+  } else {
+    // No doc yet — create it with empty data
+    setDoc(expenseDocRef, expData).catch(function(err) { console.error(err); });
+  }
+}, function(err) {
+  console.error('Firestore listen failed:', err);
+});
 
 function buildExpenses() {
   var container = document.getElementById('exp-container');
@@ -1128,7 +1191,7 @@ function isAndroid() {
   return /Android/.test(navigator.userAgent);
 }
 
-function openMap(destination, origin) {
+window.openMap = function openMap(destination, origin) {
   var dest = encodeURIComponent(destination);
   var orig = origin ? encodeURIComponent(origin) : '';
   var url;
@@ -1152,7 +1215,7 @@ function openMap(destination, origin) {
 }
 
 // ============ COPY ADDRESS ============
-function copyAddr(address, btn) {
+window.copyAddr = function copyAddr(address, btn) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(address).then(function() {
       showCopied(btn);
